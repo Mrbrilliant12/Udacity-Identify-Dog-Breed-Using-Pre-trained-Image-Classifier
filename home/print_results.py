@@ -75,7 +75,7 @@ def print_results(results_dic, results_stats_dic, model,
     #          that's accessed by key 'n_notdogs_img' using dictionary 
     #          results_stats_dic
     #
-    print("")
+    print(results_stats_dic['n_notdogs_img'])
 
 
     # Prints summary statistics (percentages) on Model Run

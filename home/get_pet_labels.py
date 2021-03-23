@@ -43,7 +43,7 @@ def get_pet_labels(image_dir):
     # Replace None with the results_dic dictionary that you created with this
     # function
     
-    filename_list = listdir("pet_images/")
+    filename_list = listdir(image_dir)
   #  print("\nPrints 10 filenames from folder pet_images/")
   #  for idx in range(0, 10, 1):
   #     print("{:2d} file: {:>25}".format(idx + 1, filename_list[idx]) )
@@ -53,8 +53,12 @@ def get_pet_labels(image_dir):
     for idx in range(0, len(filename_list), 1):
        # Skips file if starts with . (like .DS_Store of Mac OSX) because it 
        # isn't an pet image file
-       if filename_list[idx][0] != ".":
-           pet_label = filename_list[idx].split('_', 1)[0].lower()
+        pet_label = ""
+        if filename_list[idx][0] != ".":
+           for i in filename_list[idx][:-3].replace("_"," "):
+                if i.isalpha() or i == " ":
+                    pet_label = "".join([pet_label, i])
+           pet_label = pet_label.lower().strip()
            if filename_list[idx] not in results_dic:
               results_dic[filename_list[idx]] = [pet_label]
            else:
